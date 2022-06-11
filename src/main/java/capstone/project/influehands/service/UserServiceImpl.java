@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserModel addUserInternal(UserModel userModel) {
         userModel.setPassword(encrypt(userModel.getPassword()));
-        userModel.setRole(userModel.getRole());
+        // userModel.setRole(userModel.getRole());
         userModel.setWishlist(new WishlistModel());
         userModel.setUsername(userModel.getUsername());
         return userDb.save(userModel);

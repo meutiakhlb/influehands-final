@@ -33,4 +33,13 @@ public class InfluencerServiceImpl implements InfluencerService{
     public List<InfluencerTiktokModel> viewallInfluencerTiktok(){
         return influencerTiktokDb.findAll();
     }
+
+    public InfluencerInstagramModel getInfluIgByUsername(String username){
+        return influencerInstagramDb.findByUsername(username);
+    }
+
+
+    public InfluencerTiktokModel getInfluTiktokByUsername(String username){
+        return influencerTiktokDb.findByUsername(username);
+    }
 }
