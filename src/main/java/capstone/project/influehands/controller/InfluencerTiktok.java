@@ -23,7 +23,7 @@ public class InfluencerTiktok {
     private InfluencerService influencerService;
 
     @GetMapping(value = "/")
-    public List<InfluencerTiktokModel> listInfluencerTiktok(Model model){
+    public List<InfluencerTiktokModel> listInfluencerTiktok(){
         List<InfluencerTiktokModel> listInfluTiktok = influencerService.viewallInfluencerTiktok();
         return listInfluTiktok;
     }
