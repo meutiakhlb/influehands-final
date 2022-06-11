@@ -21,12 +21,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
-                .authorizeRequests()
+                .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/api-docs").permitAll()
                 .antMatchers("/v3/api-docs/**").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
+                .antMatchers("/api/influencerIg/**").permitAll()
+                .antMatchers("/api/influencerTiktok/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
