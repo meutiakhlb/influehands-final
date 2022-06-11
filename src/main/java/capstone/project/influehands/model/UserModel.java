@@ -36,10 +36,11 @@ public class UserModel implements  Serializable{
     @Column(name = "password", nullable = false)
     private String password;
 
-     @NotNull
-     @Lob
-     @Column(name = "role", nullable = false)
-     private Long role;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_role")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @JsonManagedReference
+    private RoleModel role;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_wishlist", referencedColumnName = "id")

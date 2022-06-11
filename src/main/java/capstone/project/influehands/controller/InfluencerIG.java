@@ -18,7 +18,7 @@ import java.util.*;
 
 
 @RestController
-@RequestMapping("/influencerIg")
+@RequestMapping("/api/influencerIg")
 public class InfluencerIG {
 
     @Autowired
@@ -32,7 +32,12 @@ public class InfluencerIG {
 
     @GetMapping(value = "/{username}")
     public InfluencerInstagramModel getInfluIgByUsername(@PathVariable String username){
-        return influencerService.getInfluIgByUsername(username);
+        if(influencerService.getInfluIgByUsername(username) == null){
+            return null;
+        } else {
+            return influencerService.getInfluIgByUsername(username);
+        }
+        
     }
 
     

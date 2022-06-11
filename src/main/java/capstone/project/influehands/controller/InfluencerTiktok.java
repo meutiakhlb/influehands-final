@@ -17,7 +17,7 @@ import java.util.*;
 
 
 @RestController
-@RequestMapping("/influencerTiktok")
+@RequestMapping("/api/influencerTiktok")
 public class InfluencerTiktok {
     @Autowired
     private InfluencerService influencerService;
