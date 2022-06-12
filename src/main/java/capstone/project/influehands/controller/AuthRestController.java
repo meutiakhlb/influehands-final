@@ -55,11 +55,6 @@ public class AuthRestController {
             return new ResponseEntity<>("Username is already taken!", HttpStatus.BAD_REQUEST);
         }
 
-        // add check for email exists in DB
-        if(userDb.findByEmail(signUpDto.getEmail()) != null){
-            return new ResponseEntity<>("Email is already taken!", HttpStatus.BAD_REQUEST);
-        }
-
         // create user object
         UserModel user = new UserModel();
         user.setUsername(signUpDto.getUsername());
