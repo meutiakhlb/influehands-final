@@ -1,6 +1,5 @@
 package capstone.project.influehands.service;
 
-import capstone.project.influehands.model.WishlistModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
