@@ -42,8 +42,4 @@ public class UserModel implements  Serializable{
 //    @JsonManagedReference
     private RoleModel role;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_wishlist", referencedColumnName = "id")
-    private WishlistModel wishlist;
-
 }
