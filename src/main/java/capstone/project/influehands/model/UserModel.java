@@ -1,5 +1,6 @@
 package capstone.project.influehands.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,6 +33,11 @@ public class UserModel implements  Serializable{
     private String username;
 
     @NotNull
+    @Size(max=50)
+    @Column(name="email", nullable = false)
+    private String email;
+
+    @NotNull
     @Lob
     @Column(name = "password", nullable = false)
     private String password;
@@ -41,5 +47,14 @@ public class UserModel implements  Serializable{
     @OnDelete(action = OnDeleteAction.CASCADE)
 //    @JsonManagedReference
     private RoleModel role;
+
+    @OneToOne(mappedBy = "userBrand")
+    private BrandModel brand;
+
+    @OneToOne(mappedBy = "userInfluencerTiktok")
+    private InfluencerTiktokModel influencerTiktok;
+
+    @OneToOne(mappedBy = "userInfluencerInstagram")
+    private InfluencerInstagramModel influencerInstagram;
 
 }

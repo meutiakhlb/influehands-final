@@ -31,12 +31,21 @@ public class CategoryModel implements Serializable{
     @Column(name = "nama", nullable = false)
     private String nama;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_influencer_ig", referencedColumnName = "id")
-    private InfluencerInstagramModel influencerInstagram;
+    @OneToOne(mappedBy = "categoryTiktokInfluencer")
+    private InfluencerTiktokModel influencerTiktokCategory;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_influencer_tiktok", referencedColumnName = "id")
-    private InfluencerTiktokModel influencerTiktok;
+    @OneToOne(mappedBy = "categoryIGInfluencer")
+    private InfluencerInstagramModel influencerIgCategory;
+
+    @OneToOne(mappedBy = "brandCategory")
+    private BrandModel categoryBrand;
+
+    // @ManyToOne(fetch = FetchType.EAGER)
+    // @JoinColumn(name = "id_influencer_ig", referencedColumnName = "id")
+    // private InfluencerIGCategory fluencerInstagram;
+
+    // @ManyToOne(fetch = FetchType.EAGER)
+    // @JoinColumn(name = "id_influencer_tiktok", referencedColumnName = "id")
+    // private InfluencerTiktokCategory influencerTiktok;
 
 }

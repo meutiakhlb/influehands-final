@@ -30,6 +30,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/api/influencerIg/**").permitAll()
                 .antMatchers("/api/influencerTiktok/**").permitAll()
+                .antMatchers("/api/user/**").permitAll()
+                .antMatchers("/api/category/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

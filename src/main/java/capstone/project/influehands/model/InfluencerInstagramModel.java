@@ -61,6 +61,11 @@ public class InfluencerInstagramModel implements Serializable{
     @Column(name = "contactperson", nullable = true)
     private String contactperson;
 
-    @OneToMany(mappedBy = "influencerInstagram", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<InfluencerIGCategory>  influencerIGCategoryList;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private CategoryModel categoryIGInfluencer;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private UserModel userInfluencerInstagram;
 }

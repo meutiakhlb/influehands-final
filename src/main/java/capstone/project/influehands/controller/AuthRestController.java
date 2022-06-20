@@ -1,12 +1,19 @@
 package capstone.project.influehands.controller;
 
+import capstone.project.influehands.model.BrandModel;
+import capstone.project.influehands.model.InfluencerInstagramModel;
+import capstone.project.influehands.model.InfluencerTiktokModel;
 import capstone.project.influehands.model.RoleModel;
 import capstone.project.influehands.model.UserModel;
 import capstone.project.influehands.repository.RoleDb;
+
 import capstone.project.influehands.repository.UserDb;
 import capstone.project.influehands.rest.LoginDTO;
 import capstone.project.influehands.rest.SignUpDTO;
+import capstone.project.influehands.service.CategoryService;
 import capstone.project.influehands.service.RoleService;
+import capstone.project.influehands.service.BrandService;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,6 +43,12 @@ public class AuthRestController {
     private RoleService roleService;
 
     @Autowired
+    private BrandService brandService;
+
+    @Autowired
+    private CategoryService category;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/login")
@@ -59,13 +72,42 @@ public class AuthRestController {
         UserModel user = new UserModel();
         user.setUsername(signUpDto.getUsername());
         user.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
-        RoleModel role = roleService.getRoleById(1L);
-        user.setRole(role);
+        user.setEmail(signUpDto.getEmail());
+        
+        RoleModel role = roleService.getRoleById(signUpDto.getId_role());
+
+        if(role.getId() == 1L){
+            BrandModel brand = new BrandModel();
+            brand.setBrandCategory(category.findById(signUpDto.getCategory_id()));
+//tambahan
+            brand.setNama(signUpDto.getUsername());
+            brandService.saveBrand(brand);
+
+            user.setBrand(brand);
+            user.setRole(role);
+            userDb.save(user);
+            return new ResponseEntity<>("User Brand registered successfully", HttpStatus.OK);
+        } else if(role.getId() == 2L) {
+            InfluencerTiktokModel influencerTiktok =  new InfluencerTiktokModel();
+            influencerTiktok.setCategoryTiktokInfluencer(category.findById(signUpDto.getCategory_id()));
+            user.setInfluencerTiktok(influencerTiktok);
+            user.setRole(role);
+            userDb.save(user);
+            return new ResponseEntity<>("User Influencer Tiktok registered successfully", HttpStatus.OK);
+        } else {
+            InfluencerInstagramModel instagramModel = new InfluencerInstagramModel();
+            instagramModel.setCategoryIGInfluencer(category.findById(signUpDto.getCategory_id()));
+            user.setInfluencerInstagram(instagramModel);
+            user.setRole(role);
+            userDb.save(user);
+            return new ResponseEntity<>("User Influencer Instagram registered successfully", HttpStatus.OK);
+        }
+        
         
 
-        userDb.save(user);
+       
 
-        return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
+        
 
     }
 

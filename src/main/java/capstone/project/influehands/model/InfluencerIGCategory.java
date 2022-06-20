@@ -29,13 +29,13 @@ public class InfluencerIGCategory implements Serializable{
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "id_influencer", referencedColumnName = "id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private InfluencerInstagramModel influencerInstagram;
+    // @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    // @JoinColumn(name = "id_influencer", referencedColumnName = "id")
+    // @OnDelete(action = OnDeleteAction.CASCADE)
+    // private InfluencerInstagramModel influencerInstagram;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "id_category", referencedColumnName = "id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private CategoryModel category;
+    // @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    // @JoinColumn(name = "id_category", referencedColumnName = "id")
+    // @OnDelete(action = OnDeleteAction.CASCADE)
+    // private CategoryModel category;
 }

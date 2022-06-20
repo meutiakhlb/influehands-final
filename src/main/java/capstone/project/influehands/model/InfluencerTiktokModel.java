@@ -29,7 +29,7 @@ public class InfluencerTiktokModel implements Serializable{
 
     @NotNull
     @Size(max = 50)
-    @Column(name = "username", nullable = false, unique = true)
+    @Column(name = "username", nullable = true, unique = true)
     private String username;
 
     @NotNull
@@ -39,12 +39,12 @@ public class InfluencerTiktokModel implements Serializable{
 
     @NotNull
     @Size(max = 50)
-    @Column(name = "followers", nullable = false)
+    @Column(name = "followers", nullable = true)
     private Long followers;
 
     @NotNull
     @Size(max = 50)
-    @Column(name = "likes", nullable = false)
+    @Column(name = "likes", nullable = true)
     private Long likes;
 
     @NotNull
@@ -52,6 +52,11 @@ public class InfluencerTiktokModel implements Serializable{
     @Column(name = "contactperson", nullable = true)
     private String contactperson;
 
-    @OneToMany(mappedBy = "influencerTiktok", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<InfluencerTiktokCategory>  influencerTiktokCategoryList;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private CategoryModel categoryTiktokInfluencer;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private UserModel userInfluencerTiktok;
 }
